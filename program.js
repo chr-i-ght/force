@@ -75,6 +75,7 @@ class TwoDBouncyBall extends Force {
   reconstruct() {
     const mymy = this;
     mymy.advance();
+    
     let xyOrNone = mymy.outOfBounds();
 
     if (Bounds.outXY(xyOrNone)) {
