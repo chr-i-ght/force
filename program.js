@@ -110,8 +110,8 @@ function cV(x, y, z) {
 function constructSpeedyBouncyBall(domain) {
   const momentum =
     cV(
-      PHI * 2.3,
-      PHI * 1.9 
+      PHI * 13, /*unlucky*/
+      PHI * 9 /*lives*/
     );
   
   return new TwoDBouncyBall(
@@ -121,7 +121,7 @@ function constructSpeedyBouncyBall(domain) {
   );
 }
 
-const BALLZ = 1;
+const AMOUNT = 2;
 const PHI = 1.618;
 let bouncyBalls = [];
 
@@ -140,7 +140,7 @@ function setup() {
   stroke(155, 38, 182);
   /*fill(155, 38, 182);*/
 
-  for (let i = 0; i < BALLZ; i++) {
+  for (let i = 0; i < AMOUNT; i++) {
     bouncyBalls.push(
       constructSpeedyBouncyBall(
         cV(i*100 * PHI, i*100 * PHI)
@@ -153,7 +153,7 @@ function draw() {
   translate(-width/2,-height/2,0);
   orbitControl();
   background(0);
-  for (let i = 0; i < BALLZ; i++) {
+  for (let i = 0; i < AMOUNT; i++) {
     let bouncyBall = bouncyBalls[i]; 
     bouncyBall.reconstruct();
   }
