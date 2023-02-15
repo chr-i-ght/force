@@ -1,22 +1,6 @@
 /*
-**********************************************************************
 ** 2023 February 15
-** The author disclaims copyright to this source code.  In place of
-** a legal notice, here is a hymn:
-**
-** O Kali, Thou art fond of cremation grounds;
-** so I have turned my heart into one
-** That thou, a resident of cremation grounds,
-** may dance there unceasingly.
-** O Mother! I have no other fond desire in my heart;
-** fire of a funeral pyre is burning there;
-** O Mother! I have preserved the ashes of dead bodies all around
-** that Thou may come.
-** O Mother! Keeping Shiva, conqueror of Death, under Thy feet,
-** Come, dancing to the tune of music;
-** Prasada waits With his eyes closed
-**
-**********************************************************************
+** The author disclaims copyright to this source code.
 */
 
 const OptionOfXAndOrY = 
@@ -107,7 +91,8 @@ class TwoDBouncyBall extends Force {
           DIR_CHANGES[OptionOfXAndOrY.X]
       );
     }
-
+    
+    /*torus(mymy.domain.x, mymy.domain.y, mymy.domain.diameter);*/
     circle(
       mymy.domain.x,
       mymy.domain.y,
@@ -126,17 +111,17 @@ function constructSpeedyBouncyBall(domain) {
   const momentum =
     cV(
       PHI * 2.3,
-      PHI * 1.9
+      PHI * 1.9 
     );
   
   return new TwoDBouncyBall(
       domain,
       momentum,
-      66.6
+      2.3 * 100
   );
 }
 
-const BALLZ = 2;
+const BALLZ = 1;
 const PHI = 1.618;
 let bouncyBalls = [];
 
@@ -149,9 +134,11 @@ function setup() {
       [OptionOfXAndOrY.X | OptionOfXAndOrY.Y]: cV(-1, -1)
     });
     
-  createCanvas(333 * PHI, 333);
+  createCanvas(666 * PHI, 666, WEBGL);
+  normalMaterial();
+  debugMode();
   stroke(155, 38, 182);
-  fill(155, 38, 182);
+  /*fill(155, 38, 182);*/
 
   for (let i = 0; i < BALLZ; i++) {
     bouncyBalls.push(
@@ -163,6 +150,8 @@ function setup() {
 }
 
 function draw() {
+  translate(-width/2,-height/2,0);
+  orbitControl();
   background(0);
   for (let i = 0; i < BALLZ; i++) {
     let bouncyBall = bouncyBalls[i]; 
